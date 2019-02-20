@@ -17344,11 +17344,11 @@ uint64_t __cdecl InternalParsing(TSSGCtrl *SSGCtrl, TSSGSubject *SSGS, const str
 					if (!element)
 						break;
 #if !defined(__BORLANDC__)
-					operand.Quad = element->Node && (lpPostfix + 2 < lpEndOfPostfix || lpPostfix[2]->Tag == TAG_RETURN)
+					operand.Quad = element->Node && (&lpPostfix[2] >= lpEndOfPostfix || lpPostfix[2]->Tag == TAG_RETURN)
 						? (uint64_t)pair_second(element->Node, uint32_t)
 						: (uint64_t)&element->Value;
 #else
-					operand.Quad = element->Node && (lpPostfix + 2 < lpEndOfPostfix || lpPostfix[2]->Tag == TAG_RETURN)
+					operand.Quad = element->Node && (&lpPostfix[2] >= lpEndOfPostfix || lpPostfix[2]->Tag == TAG_RETURN)
 						? (uint64_t)&element->Node->second
 						: (uint64_t)&element->Value;
 #endif
